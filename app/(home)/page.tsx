@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import MonthSelect from "../_components/month-select";
 import { getDashboard } from "../_data/get-dashboard";
 import { getCurrentMonth } from "../_helpers/getCurrentMonth";
+import AiReportButton from "./_components/ai-report-button";
 import ExpensesByCategory from "./_components/expenses-by-category";
 import LastTransactions from "./_components/last-transactions";
 import SummaryListCards from "./_components/summary-list-cards";
@@ -23,14 +24,16 @@ const HomePage = async (props: HomeProps) => {
     !month || isMatch(typeof month, "MM") || typeof month !== "string";
 
   if (monthIsInvalid) redirect(`?month=${getCurrentMonth()}`);
-
   const data = await getDashboard(month);
 
   return (
     <div>
       <div className="mb-7 flex justify-between gap-4">
         <h1 className="text-2xl font-bold">Dashboard</h1>
-        <MonthSelect />
+        <div className="flex gap-3">
+          <AiReportButton month={month} />
+          <MonthSelect />
+        </div>
       </div>
       <div className="grid grid-cols-[2fr,1fr] gap-6">
         <div className="flex flex-col gap-6">
