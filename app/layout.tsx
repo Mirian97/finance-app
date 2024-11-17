@@ -2,6 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
+import Navbar from "./_components/navbar";
 import "./globals.css";
 
 const mulish = Mulish({ subsets: ["latin-ext"] });
@@ -26,7 +27,8 @@ export default function RootLayout({
     >
       <html lang="en">
         <body className={`${mulish.className} dark antialiased`}>
-          {children}
+          <Navbar />
+          <div className="p-6">{children}</div>
         </body>
       </html>
     </ClerkProvider>
